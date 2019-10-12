@@ -1,0 +1,18 @@
+
+
+def log(func):
+
+    def wrapper():
+        print('start...')
+        func()
+        print('end ...')
+    return wrapper    # wrapper 不能写为wrapper()
+
+
+@log
+def hello():
+    print('hello world')
+
+
+if __name__ == '__main__':
+    hello()
