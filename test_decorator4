@@ -1,0 +1,39 @@
+from functools import wraps
+
+
+def log(name=None):
+    """ 记录函数执行的日志 """
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper2(*args, **kwargs):
+            """" 装饰器内部函数"""
+            print('{0}.start...'.format(name))
+            print('-------warpper:{0}'.format(func.__name__))
+            print('-------warpper:{0}'.format(func.__doc__))
+            rest = func(*args, **kwargs)
+            print('{0}.end..'.format(name))
+            return rest
+        # wrapper2.__doc__ = func.__doc__
+        # wrapper2.__name__ = func. __name__
+        return wrapper2
+    return decorator
+
+
+@log('hello')
+def hello():
+    """ 简单功能模拟 """
+    print('hello world')
+
+
+if __name__ == '__main__':
+    print('doc:{0}'.format(hello.__doc__))
+    print('name:{0}'.format(hello.__name__))
+    hello()
+
+
+
+
+
+
+
